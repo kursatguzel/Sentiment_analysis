@@ -54,8 +54,8 @@ headersparam = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0
 
 """Siteden format değiştirme ve çekme"""
 
-# sadece trendyolun tüm yorumlar sayfası için çalışır!!!
-r = requests.get("https://www.trendyol.com/apple/airpods-2-nesil-bluetooth-kulaklik-mv7n2tu-a-apple-turkiye-garantili-p-6405631/yorumlar?boutiqueId=561660&merchantId=106299", headers=headersparam)
+# sadece **** tüm yorumlar sayfası için çalışır!!!
+r = requests.get("website_url", headers=headersparam)
 yorum =r.content
 soup = BeautifulSoup(yorum,"html.parser")
 
@@ -97,15 +97,15 @@ df
 
 """Excel formatında kayıt etme"""
 
-df.to_excel('/content/drive/Colab Notebooks/trendyolveri/hamveri.xlsx')
+df.to_excel('/content/drive/hamveri.xlsx')
 
 """# Veri Seti Yükleme"""
 
 # csv den veri yükleme
 
 from openpyxl import Workbook,load_workbook 
-yorumlar = pd.read_excel('/content/drive/Colab Notebooks/trendyolveri/trendyolverislenmis.xlsx')
-yorumlartest = pd.read_excel('/content/drive/Colab Notebooks/trendyolveri/hamveri.xlsx')
+yorumlar = pd.read_excel('/content/drive/verislenmis.xlsx')
+yorumlartest = pd.read_excel('/content/drive/hamveri.xlsx')
 
 #ilk beş girdi görmek için
 yorumlar.head() 
@@ -181,11 +181,11 @@ for d in yorumlartest['Yorumlar'].head():
 #df.columns=["Yorumlar","Tarih"]
 #print(df)
 
-yorumlar.to_csv('/content/drive/Colab Notebooks/trendyolveri/cleaned.csv', index = False)
-yorumlartest.to_csv('/content/drive/Colab Notebooks/trendyolveri/cleanedtest.csv', index = False)
+yorumlar.to_csv('/content/drive/cleaned.csv', index = False)
+yorumlartest.to_csv('/content/drive/cleanedtest.csv', index = False)
 
-yorumlar = pd.read_csv('/content/drive/Colab Notebooks/trendyolveri/cleaned.csv')
-yorumlartest = pd.read_csv('/content/drive/Colab Notebooks/trendyolveri/cleanedtest.csv')
+yorumlar = pd.read_csv('/content/drive/cleaned.csv')
+yorumlartest = pd.read_csv('/content/drive/cleanedtest.csv')
 
 print(yorumlar.head())
 
